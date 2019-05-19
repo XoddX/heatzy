@@ -66,10 +66,12 @@ class HeatzyDevice {
             return Promise.reject("Boost mode only support for Pilote Gen 2");
         }
         let body = {
-            derog_mode: toggle ? 2 : 0
+            attrs: {
+                derog_mode: toggle ? 2 : 0
+            }
         }
         if(toggle) {
-            body.derog_time = minutes;
+            body.attrs.derog_time = minutes;
         }
         return this.client({
             uri: `control/${this.did}`,
@@ -92,13 +94,15 @@ class HeatzyDevice {
     toggleScheduler(toggle){
         let self = this;
         if(self.version !== PRODUCTS.Pilote2.productName){
-            return Promise.reject("Boost mode only support for Pilote Gen 2");
+            return Promise.reject("Scheduler mode only support for Pilote Gen 2");
         }
         return this.client({
             uri: `control/${this.did}`,
             method: 'POST',
             body: {
-                timer_switch: toggle ? 1 : 0
+                attrs: {
+                    timer_switch: toggle ? 1 : 0
+                }
             }
         })
         .then(() => {
@@ -117,13 +121,15 @@ class HeatzyDevice {
     toggleHolidays(toggle, days){
         let self = this;
         if(self.version !== PRODUCTS.Pilote2.productName){
-            return Promise.reject("Boost mode only support for Pilote Gen 2");
+            return Promise.reject("Holidays mode only support for Pilote Gen 2");
         }
         let body = {
-            derog_mode: toggle ? 1 : 0
+            attrs: {
+                derog_mode: toggle ? 1 : 0
+            }
         }
         if(toggle) {
-            body.derog_time = days;
+            body.attrs.derog_time = days;
         }
         return this.client({
             uri: `control/${this.did}`,
@@ -146,13 +152,15 @@ class HeatzyDevice {
     toggleLock(toggle){
         let self = this;
         if(self.version !== PRODUCTS.Pilote2.productName){
-            return Promise.reject("Boost mode only support for Pilote Gen 2");
+            return Promise.reject("Lock only support for Pilote Gen 2");
         }
         return this.client({
             uri: `control/${this.did}`,
             method: 'POST',
             body: {
-                lock_switch: toggle ? 1 : 0
+                attrs: {
+                    lock_switch: toggle ? 1 : 0
+                }
             }
         })
         .then(() => {

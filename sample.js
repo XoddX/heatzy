@@ -13,7 +13,7 @@ heatzy
         return Promise.all(devices.map((device) => {
             return device.off()
                 .then((device) => {
-                    return device.refreshData();
+                    return device.lock();
                 })
         }));
     })
