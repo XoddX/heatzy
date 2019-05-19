@@ -38,8 +38,8 @@ class HeatzyDevice {
         return this.client({
             uri: `devdata/${this.did}/latest`
         }).then((body) => {
-            this.data = body;
-            this.mode = PRODUCTS[self.version].DECODE[body.attr.mode];
+            self.data = body;
+            self.mode = PRODUCTS[self.version].DECODE[body.attr.mode];
             return self;
         });
     }
